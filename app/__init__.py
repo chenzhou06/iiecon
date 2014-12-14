@@ -10,7 +10,7 @@ from config import config
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
-db = SQLAlsduchemy()
+db = SQLAlchemy()
 pagedown = PageDown()
 
 
