@@ -32,7 +32,7 @@ def create_app(config_name):
     pagedown.init_app(app)
 
     from .xtu import xtu as xtu_blueprint
-    app.register_blueprint(xtu_blueprint)
+    app.register_blueprint(xtu_blueprint, subdomain="xtu308")
 
     # from .auth import auth as auth_blueprint
     # app.register_blueprint(auth_blueprint, url_prefix="/auth")
