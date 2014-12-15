@@ -28,21 +28,21 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SERVER_NAME = "localhost:5000"
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or \
-            "mysql://root:cz650520@localhost/IIECON-dev"
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or \
+            # "mysql://root:cz650520@localhost/IIECON-dev"
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL") or \
-            "mysql://root:cz650520@localhost/IIECON-test"
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL") or \
+    #         "mysql://root:cz650520@localhost/IIECON-test"
     WTF_CSRF_ENABLED = False
 
 
 class ProductionConfig(Config):
     SERVER_NAME = "iiecon.cz"
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") or \
-            "mysql://root:cz6505520@localhost/IIECON"
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") or \
+    #         "mysql://root:cz6505520@localhost/IIECON"
 
 
 config = {

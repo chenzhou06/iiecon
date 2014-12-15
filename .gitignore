@@ -6,4 +6,4 @@ venv
 
 *.sublime-workspace
 
-! tests
+*.pyc
