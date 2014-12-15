@@ -34,6 +34,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+    SERVER_NAME = "iiecon.cz"
     # SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL") or \
     #         "mysql://root:cz650520@localhost/IIECON-test"
     WTF_CSRF_ENABLED = False
