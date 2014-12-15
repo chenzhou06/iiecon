@@ -34,6 +34,9 @@ def create_app(config_name):
     from .xtu import xtu as xtu_blueprint
     app.register_blueprint(xtu_blueprint, subdomain="xtu.308")
 
+    from .index import index as index_blueprint
+    app.register_blueprint(index_blueprint)
+
     # from .auth import auth as auth_blueprint
     # app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
