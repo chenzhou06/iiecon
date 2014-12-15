@@ -12,4 +12,4 @@ from . import xtu
 
 @xtu.route("/")
 def index():
-    return "Welcome to IIECON"
+    return render_template("xtu/index.html")
