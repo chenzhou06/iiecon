@@ -27,7 +27,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SERVER_NAME = "localhost:5000"
+    SERVER_NAME = "localhost.dev"
     # SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or \
             # "mysql://root:cz650520@localhost/IIECON-dev"
 
