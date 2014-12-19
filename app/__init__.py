@@ -32,13 +32,16 @@ def create_app(config_name):
     pagedown.init_app(app)
 
     from .xtu import xtu as xtu_blueprint
-    if config_name == "development":
+    if config_name == "default":
         app.register_blueprint(xtu_blueprint, url_prefix="/xtu.308")
     else:
         app.register_blueprint(xtu_blueprint, subdomain="xtu.308")
 
     from .index import index as index_blueprint
     app.register_blueprint(index_blueprint)
+    
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
     # from .auth import auth as auth_blueprint
     # app.register_blueprint(auth_blueprint, url_prefix="/auth")

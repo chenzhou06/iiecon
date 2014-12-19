@@ -6,4 +6,6 @@ venv
 
 *.sublime-workspace
 
+*.geany
+
 *.pyc

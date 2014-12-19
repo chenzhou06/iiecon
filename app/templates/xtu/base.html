@@ -1,8 +1,8 @@
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}XTU 308{% endblock %}
 
-{% block content %}
+{% block navbar %}
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -53,10 +53,31 @@
           </ul>
         </li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+          {% if current_usr.is_authenticated() %}
+          <li><a href="{{ url_for("auth.logout") }}>注销</a>"</li>
+          {% else %}
+          <li><a href="{{ url_for("auth.login") }}>登录</a></li>
+          {% endif %}
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+{% endblock %}
 
-{% block page_content %}{% endblock %}
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    
+    {% block page_content %}{% endblock %}
+</div>
+
+
+{% endblock %}
 
 {% endblock %}
