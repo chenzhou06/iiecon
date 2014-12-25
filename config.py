@@ -14,7 +14,7 @@ class Config:
     # MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     XTU_MAIL_SUBJECT_PREFIX = "[IIECON XTU]"
     XTU_MAIL_SENDER = "IIECON <admin@iiecon.com>"
-    XTU_ADMIN = os.environ.get("XTU_ADMIN")
+    XTU_ADMIN = os.environ.get("XTU_ADMIN") or "czwork@outlook.com"
     XTU_POSTS_PER_PAGE = 20
     XTU_FOLLOWERS_PER_PAGE = 50
     XTU_COMMENTS_PER_PAGE = 30
