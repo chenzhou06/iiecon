@@ -21,7 +21,7 @@ migrate = Migrate(app, db)
 #                 Permission=Permission, Post=Post, Comment=Comment)
 
 # manager.add_command("shell", Shell(make_context=make_shell_context))
-# manager.add_command("db", MigrateCommand)
+manager.add_command("db", MigrateCommand)
 
 
 # @manager.command

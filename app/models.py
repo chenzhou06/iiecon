@@ -1,5 +1,7 @@
 from flask.ext.login import UserMixin, AnonymousUserMixin
 from . import db, login_manager
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask import current_app, request, url_for
 
 
 class Permission:
@@ -19,13 +21,25 @@ class User(UserMixin, db.Model):
             if self.email == current_app.config["XTU_ADMIN"]:
                 self.role = Role.query.filter_by(permission=0xff).first()
             if self.role is None:
-                self.role = Role.query.filter_by(default=True).fisrt()
+                self.role = Role.query.filter_by(default=True).first()
             
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    password_hash = db.Column(db.String(128))
+
+    @property
+    def password(self):
+        raise AttributeError("password is not a readble attribute")
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def can(self, permissions):
         return self.role is not None and \
