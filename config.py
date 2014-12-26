@@ -12,13 +12,13 @@ class Config:
     #MAIL_PORT = 
     # MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     # MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    XTU_MAIL_SUBJECT_PREFIX = "[IIECON XTU]"
-    XTU_MAIL_SENDER = "IIECON <admin@iiecon.com>"
-    XTU_ADMIN = os.environ.get("XTU_ADMIN") or "czwork@outlook.com"
-    XTU_POSTS_PER_PAGE = 20
-    XTU_FOLLOWERS_PER_PAGE = 50
-    XTU_COMMENTS_PER_PAGE = 30
-    XTU_SLOW_DB_QUERY_TIME = 0.5
+    IIECON_MAIL_SUBJECT_PREFIX = "[IIECON]"
+    IIECON_MAIL_SENDER = "IIECON <admin@iiecon.com>"
+    IIECON_ADMIN = os.environ.get("XTU_ADMIN") or "czwork@outlook.com"
+    IIECON_POSTS_PER_PAGE = 20
+    IIECON_FOLLOWERS_PER_PAGE = 50
+    IIECON_COMMENTS_PER_PAGE = 30
+    IIECON_SLOW_DB_QUERY_TIME = 0.5
 
     @staticmethod
     def init_app(app):

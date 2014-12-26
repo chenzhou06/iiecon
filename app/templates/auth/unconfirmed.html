@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}IIECON - 验证你的账号{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>
+        您好, {{ current_user.username }}!
+    </h1>
+    <h3>您的账号还没有经过验证</h3>
+    <p>
+        在能够浏览这个网站之前，您需要验证账户。检查您的收件箱，您应该受到了一封验证邮件。
+    </p>
+    <p>
+        重新发送验证邮件？
+        <a href="{{ url_for('auth.resend_confirmation') }}">请点击</a>
+    </p>
+</div>
+{% endblock %}
