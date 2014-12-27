@@ -5,7 +5,8 @@ from .. import db
 from ..models import User
 from ..email import send_email
 from .forms import LoginForm, RegistrationForm, ChangePasswordForm, \
-                   PasswordResetRequestForm, PasswordResetForm
+                   PasswordResetRequestForm, PasswordResetForm, \
+                   ChangeEmailForm
 
 @auth.before_app_request
 def before_request():
@@ -129,3 +130,31 @@ def password_reset(token):
         else:
             return redirect(url_for("xtu.index"))
     return render_template("auth/reset_password.html", form=form)
+
+
+@auth.route("/change-email", methods=["GET", "POST"])
+@login_required
+def change_email_request():
+    form = ChangeEmailForm()
+    if form.validate_on_submit():
+        if current_user.verify_password(form.password.data):
+            new_email = form.email.data
+            token = current_user.generate_email_change_token(new_email)
+            send_email(new_email, "验证新邮箱地址",
+                       "auth/email/change_email",
+                       user=current_user, token=token)
+            flash("修改邮箱地址的邮件已经发送到您的邮箱")
+            return redirect(url_for("xtu.index"))
+        else:
+            flash("邮箱或密码无效")
+    return render_template("auth/change_email.html", form=form)
+
+
+@auth.route("/change_email/<token>")
+@login_required
+def change_email(token):
+    if current_user.change_email(token):
+        flash("您的邮箱地址修改成功")
+    else:
+        flash("请求无效")
+    return redirect(url_for("xtu.index"))
