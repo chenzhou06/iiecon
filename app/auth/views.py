@@ -4,7 +4,8 @@ from . import auth
 from .. import db
 from ..models import User
 from ..email import send_email
-from .forms import LoginForm, RegistrationForm, ChangePasswordForm
+from .forms import LoginForm, RegistrationForm, ChangePasswordForm, \
+                   PasswordResetRequestForm, PasswordResetForm
 
 @auth.before_app_request
 def before_request():
@@ -93,3 +94,38 @@ def change_password():
             flash("密码不正确")
     return render_template("auth/change_password.html",
                             form=form,)
+
+
+@auth.route("/reset", methods=["GET", "POST"])
+def password_reset_request():
+    if not current_user.is_anonymous():
+        return redirect(url_for("xtu.index"))
+    form = PasswordResetRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            token = user.generate_reset_token()
+            send_email(user.email, "重设密码",
+                       "auth/email/reset_password",
+                       user=user, token=token,
+                       next=request.args.get("next"))
+            flash("重设密码的邮件已经发送到您的邮箱")
+            return redirect(url_for("auth.login"))
+    return render_template("auth/reset_password.html", form=form)
+
+
+@auth.route("/reset/<token>", methods=["GET", "POST"])
+def password_reset(token):
+    if not current_user.is_anonymous():
+        return redirect(url_for("xtu.index"))
+    form = PasswordResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is None:
+            return redirect(url_for("xtu.index"))
+        if user.reset_password(token, form.password.data):
+            flash("密码修改成功")
+            return redirect(url_for("auth.login"))
+        else:
+            return redirect(url_for("xtu.index"))
+    return render_template("auth/reset_password.html", form=form)
