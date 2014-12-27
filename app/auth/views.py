@@ -23,9 +23,19 @@ def unconfirmed():
 @login_required
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
-    send_email("auth/email/confirm",
-                "验证账号", user, token=token)
+    send_email(current_user.email, "账号验证", "auth/email/confirm", user=current_user, token=token)
     flash("新验证邮件已经发送")
+    return redirect(url_for("xtu.index"))
+
+@auth.route("/confirm/<token>")
+@login_required
+def confirm(token):
+    if current_user.confirmed:
+        return redirect(url_for("xtu.index"))
+    if current_user.confirm(token):
+        flash("邮箱验证成功！")
+    else:
+        flash("验证连接已经失效")
     return redirect(url_for("xtu.index"))
 
 
@@ -66,16 +76,7 @@ def register():
     return render_template("auth/register.html", form=form)
 
 
-@auth.route("/confirm/<token>")
-@login_required
-def confirm(token):
-    if current_user.confirmed:
-        return redirect(url_for("xtu.index"))
-    if current_user.confirm(token):
-        flash("邮箱验证成功！")
-    else:
-        flash("验证连接已经失效")
-    return redirect(url_for("xtu.index"))
+
 
 
 @auth.route("/change-password", methods=["GET", "POST"])
