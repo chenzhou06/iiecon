@@ -22,7 +22,7 @@ class Config:
     MAIL_PASSWORD = "cz650520"
     IIECON_MAIL_SUBJECT_PREFIX = "[IIECON]"
     IIECON_MAIL_SENDER = "IIECON Admin <iiecon@163.com>"
-    IIECON_ADMIN = os.environ.get("IIECON_ADMIN") or "czwork@outlook.com"
+    IIECON_ADMIN = os.environ.get("IIECON_ADMIN") or "iiecon@163.com"
     IIECON_POSTS_PER_PAGE = 20
     IIECON_FOLLOWERS_PER_PAGE = 50
     IIECON_COMMENTS_PER_PAGE = 30

@@ -2,6 +2,11 @@
 
 {% block title %}IIECON{% endblock %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="styles.css") }}">
+{% endblock %}
+
 {% block navbar %}
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
@@ -13,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">IIECON</a>
+      <a class="navbar-brand" href="{{ url_for("xtu.index") }}">IIECON</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

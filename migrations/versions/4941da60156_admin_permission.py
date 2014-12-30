@@ -1,14 +1,14 @@
-"""changepasswordform
+"""admin permission
 
-Revision ID: 56dc614e537
-Revises: 2a65ca7a00a
-Create Date: 2014-12-26 22:35:38.591843
+Revision ID: 4941da60156
+Revises: e620352275
+Create Date: 2014-12-30 13:44:03.335872
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '56dc614e537'
-down_revision = '2a65ca7a00a'
+revision = '4941da60156'
+down_revision = 'e620352275'
 
 from alembic import op
 import sqlalchemy as sa
