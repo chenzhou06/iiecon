@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% import "xtu/_macros.html" as macros %}
+
 
 {% block title %}XTU 308{% endblock %}
 
@@ -16,5 +18,10 @@
     {% endif %}
     </div>
     {% include "xtu/_posts.html" %}
+    {% if pagination %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, ".index") }}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
