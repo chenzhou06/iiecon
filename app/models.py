@@ -7,10 +7,6 @@ from flask import current_app, request, url_for
 from datetime import datetime
 from markdown import markdown
 import bleach
-<<<<<<< HEAD
-
-=======
->>>>>>> postlink
 
 class Permission:
     FOLLOW = 0x01
@@ -240,16 +236,8 @@ class Post(db.Model):
                         'em', 'i', 'li', 'ol', 'pre', 'strong', 'ul',
                         'h1', 'h2', 'h3', 'p']
         target.body_html = bleach.linkify(bleach.clean(
-<<<<<<< HEAD
             markdown(value, output_format='html'),
             tags=allowed_tags, strip=True))
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
 
-
-=======
-            markdown(value, output_format="html"),
-            tags=allowed_tags, strip=True))
-
-db.event.listen(Post.body, "set", Post.on_changed_body)
->>>>>>> postlink
