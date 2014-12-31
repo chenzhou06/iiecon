@@ -1,4 +1,5 @@
 from flask.ext.wtf import Form
+from flask.ext.pagedown.fields import PageDownField
 from wtforms import StringField, TextAreaField, BooleanField,\
                     SelectField, SubmitField
 from wtforms.validators import Required, Length, Email, Regexp
@@ -44,5 +45,5 @@ class EditProfileAdminForm(Form):
 
 
 class PostForm(Form):
-    body = TextAreaField("想法，感悟",validators=[Required()])
+    body = PageDownField("想法，感悟", validators=[Required()])
     submit = SubmitField("保存")

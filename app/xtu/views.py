@@ -79,4 +79,10 @@ def edit_profile_admin(id):
     return render_template("edit_profile.html", form=form, user=user)
 
 
+@xtu.route("/post/<int:id>")
+def post(id):
+    post = Post.query.get_or_404(id)
+    return render_template("xtu/post.html", posts=[post])
+
+
 
