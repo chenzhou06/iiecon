@@ -47,3 +47,7 @@ class EditProfileAdminForm(Form):
 class PostForm(Form):
     body = PageDownField("想法，感悟", validators=[Required()])
     submit = SubmitField("保存")
+
+class CommentForm(Form):
+    body = StringField("", validators=[Required()])
+    submit = SubmitField("评论")

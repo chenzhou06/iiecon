@@ -1,9 +1,26 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 {% import "xtu/_macros.html" as macros %}
+
 
 {% block title %}IIECON - 文章{% endblock %}
 
 {% block page_content %}
 {% include 'xtu/_posts.html' %}
+
+<h4 id="comments">评论</h4>
+{% if current_user.can(Permission.COMMENT) %}
+<div class="comment-form">
+    {{ wtf.quick_form(form) }}
+</div>
+{% endif %}
+{% include "xtu/_comments.html" %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, ".post",
+    fragment = "#comments", id=posts[0].id) }}
+</div>
+{% endif %}
+
 {% endblock %}
 
