@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "xtu/_macros.html" as macros %}
+
+{% block title %}IIECON - 修改评论{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>修改评论</h1>
+</div>
+{% set moderate = True %}
+{% include 'xtu/_comments.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.moderate') }}
+</div>
+{% endif %}
+{% endblock %}

@@ -9,7 +9,7 @@ from .forms import EditProfileForm, EditProfileAdminForm, \
                    PostForm, CommentForm
 from .. import db
 from ..models import Permission, Role, User, Post, Comment
-from ..decorators import admin_required
+from ..decorators import admin_required, permission_required
 
 @xtu.route("/", methods=["GET", "POST"])
 def index():
@@ -117,3 +117,36 @@ def edit(id):
     form.body.data = post.body
     return render_template("xtu/edit_post.html", form=form)
 
+@xtu.route("/moderate")
+@login_required
+@permission_required(Permission.MODERATE_COMMENTS)
+def moderate():
+    page = request.args.get("page", 1, type=int)
+    pagination = Comment.query.order_by(Comment.timestamp.desc()).paginate(
+        page, per_page=current_app.config["IIECON_COMMENTS_PER_PAGE"],
+        error_out=False)
+    comments = pagination.items
+    return render_template("xtu/moderate.html", comments=comments,
+                            pagination=pagination, page=page)
+
+
+@xtu.route("/moderate/enable/<int:id>")
+@login_required
+@permission_required(Permission.MODERATE_COMMENTS)
+def moderate_enable(id):
+    comment = Comment.query.get_or_404(id)
+    comment.disabled = False
+    db.session.add(comment)
+    return redirect(url_for(".moderate",
+                            page=request.args.get("page", 1, type=int)))
+
+
+@xtu.route("/moderate/disable/<int:id>")
+@login_required
+@permission_required(Permission.MODERATE_COMMENTS)
+def moderate_disable(id):
+    comment = Comment.query.get_or_404(id)
+    comment.disabled = True
+    db.session.add(comment)
+    return redirect(url_for(".moderate",
+            page=request.args.get("page", 1, type=int)))

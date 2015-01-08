@@ -59,6 +59,9 @@
             </a>
           </li>
           {% endif %}
+
+          {% if current_user.can(Permission.MODERATE_COMMENTS) %}<li><a href="{{ url_for("xtu.moderate") }}">修改评论</a></li>
+          {% endif %}
       </ul>
 
     </div><!-- /.navbar-collapse -->
