@@ -25,7 +25,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">     
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated() %}
-        <li><a href="{{ url_for('.newpost') }}">发布文章</a></li>
+        <li><a href="{{ url_for('xtu.newpost') }}">发布文章</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="navbar-inner img-rounded" src="{{ current_user.gravatar(size=20) }}">  <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
