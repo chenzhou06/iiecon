@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "xtu/_macros.html" as macros %}
 
 {% block title %}IIECON - {{ user.username }}{% endblock %}
 
@@ -40,6 +41,11 @@
     <h3>{{ user.username }} 的文章：</h3>
     {% include "xtu/_posts.html" %}
     </div>
+    {% if pagination %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.user', username=user.username) }}
+    </div>
+    {% endif %}
 </div>
 </div>
 {% endblock %}

@@ -1,5 +1,9 @@
 # 关于本站
-本站是用 Python 的 Flask 框架写的，花了我近两个月时间，主要参考了教材 *Flask Web Development -- Developing Web Application with Python*，使用 Ubuntu 14.04 + gunicorn + nginx 部署。CSS 使用了 Twitter 的 Bootstrap, 数据库使用 Python 自带的 Sqlite。为了避免网站备案等麻烦，选择了国外的服务器提供商，机房在洛杉矶，国内延迟可能较高。
+本站是用 Python 的 Flask 框架写的，花了近两个月时间，主要参考了教材 *Flask Web Development -- Developing Web Application with Python*，使用 Ubuntu 14.04 + gunicorn + nginx 部署。CSS 使用了 Twitter 的 Bootstrap, 数据库使用 Python 自带的 Sqlite。
+
+网站源代码托管在：[Github](https://github.com/chenzhou06/iiecon)
+
+为了避免网站备案等麻烦，选择了国外的服务器提供商，机房在洛杉矶，国内延迟可能较高。
 
 # 为什么建立本站
 本站是为了提供给大家一个交流展示的平台，分享各自最新的学术思想，展示自己的学习感悟，当然也是一个给大家写写生活感悟，发发牢骚的地方。
@@ -17,26 +21,30 @@ Markdown 基本的语法规则：
 
 分段：空一行表示分段，空多行与空一行的效果没有区别。
 
->这是一段。
->
->这是另一段。
+"""这是一段。这是另一段。"""
 
 多级标题：不同数量的 # 号表示不同级别的标题，不同级别的标题文字大小不同。
 
-># 这是一级标题
->## 这是二级标题
->### 这是三级标题
+><code># 这是一级标题</code>
+>
+><code>## 这是二级标题</code>
+>
+><code>### 这是三级标题</code>
 
 文字 *倾斜*，文字**加粗**：
 
->文字*倾斜*，文字**加粗**
+><code>文字*倾斜*，文字**加粗**</code>
 
 项目符号：用 * 表示一个项目
 
->* 第一个项目
->* 第二个项目
->* 第三个项目
+><code>* 第一个项目</code>
 >
->1 有序的项目符号
->2 第二个有序的项目符号
->3 第三方有序的项目符号
+><code>* 第二个项目</code>
+>
+><code>* 第三个项目</code>
+>
+><code>1 有序的项目符号</code>
+>
+><code>2 第二个有序的项目符号</code>
+>
+><code>3 第三方有序的项目符号</code>

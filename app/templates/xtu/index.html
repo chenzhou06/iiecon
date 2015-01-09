@@ -11,7 +11,7 @@
         <div class="container">
             <div>
                 <h1>欢迎来到 IIECON</h1>
-                <p>湘潭大学商学院308办公室博客群，一个交流经济学思想，分享生活点滴的地方。</p>
+                <p>湘潭大学商学院 308 办公室博客群，一个交流经济学思想，分享生活点滴的地方。</p>
                 <br>
                 <div>
                     <p>{{ greetingMessage["text"] }}</p>
@@ -38,8 +38,8 @@
         {% endif %}
     </div>
     {% if current_user.is_authenticated() %}
-    <div class="container col-md-4">
-        <a class="btn btn-danger" href="{{ url_for('.newpost') }}">新文章</a>
+    <div class="container col-md-3 col-md-offset-1">
+        <a class="btn btn-danger" href="{{ url_for('.newpost') }}">发布文章</a>
     </div>
     {% endif %}
 </div>
