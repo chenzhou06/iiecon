@@ -60,7 +60,7 @@ def newpost():
         post = Post(title=form.title.data, body=form.body.data,
                     author=current_user._get_current_object())
         db.session.add(post)
-        return redirect(url_for(".index"))
+        return redirect(url_for("xtu.index"))
     return render_template("xtu/newpost.html", form=form)
 
 @xtu.route("/user/<username>")
@@ -154,6 +154,7 @@ def edit(id):
         db.session.add(post)
         flash("文章修改成功")
         return redirect(url_for(".post", id=post.id))
+    form.title.data = post.title
     form.body.data = post.body
     return render_template("xtu/edit_post.html", form=form)
 

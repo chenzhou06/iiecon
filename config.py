@@ -15,9 +15,9 @@ class Config:
     # MAIL_USERNAME = "714264297"
     # MAIL_PASSWORD = "a650520"
     MAIL_SERVER = "smtp.163.com"
-    MAIL_PORT = 25
+    MAIL_PORT = 994
     MAIL_USE_TLS = False
-    MAIL_USE_SSL = False
+    MAIL_USE_SSL = True
     MAIL_USERNAME = "iiecon"
     MAIL_PASSWORD = "cz650520"
     IIECON_MAIL_SUBJECT_PREFIX = "[IIECON]"
