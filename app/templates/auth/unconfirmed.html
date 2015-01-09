@@ -3,6 +3,7 @@
 {% block title %}IIECON - 验证你的账号{% endblock %}
 
 {% block page_content %}
+<div class="container">
 <div class="page-header">
     <h1>
         您好, {{ current_user.username }}!
@@ -15,5 +16,6 @@
         重新发送验证邮件？
         <a href="{{ url_for('auth.resend_confirmation') }}">请点击</a>
     </p>
+</div>
 </div>
 {% endblock %}

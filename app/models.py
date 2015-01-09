@@ -7,6 +7,10 @@ from flask import current_app, request, url_for
 from datetime import datetime
 from markdown import markdown
 import bleach
+import pytz
+
+tz = pytz.timezone(pytz.country_timezones('cn')[0])
+
 
 class Permission:
     FOLLOW = 0x01
@@ -211,8 +215,9 @@ def load_user(user_id):
 class Post(db.Model):
     __tablename__ = "posts"
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(128), default="未命名文章")
     body = db.Column(db.Text)
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.now(tz))
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     body_html = db.Column(db.Text)
     comments = db.relationship("Comment", backref="post", lazy="dynamic")

@@ -22,48 +22,27 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">     
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated() %}
+        <li><a href="{{ url_for('.newpost') }}">发布文章</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="navbar-inner img-rounded" src="{{ current_user.gravatar(size=20) }}">  <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="{{ url_for("xtu.user", username=current_user.username) }}">
+              个人资料
+            </a></li>
+            <li><a href="{{ url_for('auth.logout') }}">注销</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            {% if current_user.can(Permission.MODERATE_COMMENTS) %}<li><a href="{{ url_for("xtu.moderate") }}">修改评论</a></li>
+            {% endif %}
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
+        {% else %}
+        <li><a href="{{ url_for('auth.login') }}">登录</a></li>
+        {% endif %}
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-
-       <ul class="nav navbar-nav navbar-right">
-          {% if current_user.is_authenticated() %}
-          <li><a href="{{ url_for('auth.logout') }}">注销</a></li>
-          {% else %}
-          <li><a href="{{ url_for('auth.login') }}">登录</a></li>
-          {% endif %}
-          {% if current_user.is_authenticated() %}
-          <li>
-            <a href="{{ url_for("xtu.user", username=current_user.username) }}">
-              个人信息
-            </a>
-          </li>
-          {% endif %}
-
-          {% if current_user.can(Permission.MODERATE_COMMENTS) %}<li><a href="{{ url_for("xtu.moderate") }}">修改评论</a></li>
-          {% endif %}
-      </ul>
-
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -79,8 +58,9 @@
     </div>
     {% endfor %}
 
+</div>
     {% block page_content %}{% endblock %}
 
-</div>
+
 
 {% endblock %}

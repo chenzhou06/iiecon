@@ -11,22 +11,57 @@ from .. import db
 from ..models import Permission, Role, User, Post, Comment
 from ..decorators import admin_required, permission_required
 
+import random
+
+
+gmsg = [
+    {'author': "Ralph Waldo Emerson, Poet",
+    "text": "Do not go where the path may lead, go instead where there is no path and leave a trail."},
+
+    {"author": "Napoleon Hill, Motivational Writer",
+    "text": "If you cannot do great things, do small things in a great way."},
+
+    {"author": "John Lennon, Musician",
+    "text": "When I was 5 years old, \
+            my mother always told me that happiness was the key to life. \
+            When I went to school, \
+            they asked me what I wanted to be when I grew up. \
+            I wrote down ‘happy.’ \
+            They told me I didn’t understand the assignment, \
+            and I told them they didn’t understand life."},
+
+    {"author": "Mike Todd, Film Producer",
+    "text": "I’ve never been poor, only broke. Being poor is a frame of mind."}
+]
+
 @xtu.route("/", methods=["GET", "POST"])
 def index():
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and \
             form.validate_on_submit():
-        post = Post(body=form.body.data,
+        post = Post(title=form.title.data, body=form.body.data,
                     author=current_user._get_current_object())
         db.session.add(post)
         return redirect(url_for(".index"))
+    greetingMessage = gmsg[random.randint(0, len(gmsg)-1)]
     page = request.args.get("page", 1, type=int)
     pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, per_page=current_app.config["IIECON_POSTS_PER_PAGE"],
         error_out=False)
     posts = pagination.items
     return render_template("xtu/index.html", form=form, posts=posts,
-                           pagination=pagination)
+                           pagination=pagination, greetingMessage=greetingMessage)
+
+@xtu.route("/newpost", methods=["GET", "POST"])
+def newpost():
+    form = PostForm()
+    if current_user.can(Permission.WRITE_ARTICLES) and \
+            form.validate_on_submit():
+        post = Post(title=form.title.data, body=form.body.data,
+                    author=current_user._get_current_object())
+        db.session.add(post)
+        return redirect(url_for(".index"))
+    return render_template("xtu/newpost.html", form=form)
 
 @xtu.route("/user/<username>")
 def user(username):
@@ -98,7 +133,8 @@ def post(id):
         page, per_page=current_app.config["IIECON_COMMENTS_PER_PAGE"],
         error_out=False)
     comments = pagination.items
-    return render_template("xtu/post.html", posts=[post], form=form, comments=comments, pagination=pagination)
+    return render_template("xtu/post.html", posts=[post], form=form, comments=comments, pagination=pagination,
+                            post=post)
 
 
 @xtu.route("/edit/<int:id>", methods=["GET", "POST"])
@@ -110,6 +146,7 @@ def edit(id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
+        post.title = form.title.data
         post.body = form.body.data
         db.session.add(post)
         flash("文章修改成功")

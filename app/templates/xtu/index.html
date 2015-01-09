@@ -2,32 +2,49 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "xtu/_macros.html" as macros %}
 
-
 {% block title %}XTU 308{% endblock %}
 
 {% block page_content %}
+
+
+    <div style="background-color: #97CBFF" class="jumbotron">
+        <div class="container">
+            <div>
+                <h1>欢迎来到 IIECON</h1>
+                <p>湘潭大学商学院308办公室博客群，一个交流经济学思想，分享生活点滴的地方。</p>
+                <br>
+                <div>
+                    <p>{{ greetingMessage["text"] }}</p>
+                    <p><small><i style="text-align: center">{{ greetingMessage["author"] }}</i></small></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
 <div class="container">
     
-    <div class="page-header">
-        <h1>Hello, {% if current_user.is_authenticated() %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
-    </div>
+
+
+
+
     
-    <div>
-    {% if current_user.can(Permission.WRITE_ARTICLES) %}
-    {{ wtf.quick_form(form) }}
-    {% endif %}
+    <div class="container col-md-8">
+        {% include "xtu/_posts.html" %}
+        {% if pagination %}
+        <div class="pagination">
+            {{ macros.pagination_widget(pagination, ".index") }}
+        </div>
+        {% endif %}
     </div>
-    {% include "xtu/_posts.html" %}
-    {% if pagination %}
-    <div class="pagination">
-        {{ macros.pagination_widget(pagination, ".index") }}
+    {% if current_user.is_authenticated() %}
+    <div class="container col-md-4">
+        <a class="btn btn-danger" href="{{ url_for('.newpost') }}">新文章</a>
     </div>
     {% endif %}
 </div>
+
 {% endblock %}
 
 
-{% block scripts %}
-{{ super() }}
-{{ pagedown.include_pagedown() }}
-{% endblock %}
+
