@@ -1,7 +1,7 @@
 # 关于本站
-本站是用 Python 的 Flask 框架写的，花了近两个月时间，主要参考了教材 *Flask Web Development -- Developing Web Application with Python*，使用 Ubuntu 14.04 + gunicorn + nginx 部署。CSS 使用了 Twitter 的 Bootstrap, 数据库使用 Python 自带的 Sqlite。
+本站用 Python 的 Flask 框架写成，花了近两个月时间，主要参考了教材 *Flask Web Development -- Developing Web Application with Python*，使用 Ubuntu 14.04 + gunicorn + nginx 部署。CSS 使用了 Twitter 的 Bootstrap, 数据库使用 Python 自带的 Sqlite。目前，在 IE10，Firefox 34.05，Chrome 39 上测试通过。网站支持手机浏览，UC 浏览器测试通过。
 
-网站源代码托管在：[Github](https://github.com/chenzhou06/iiecon)
+网站源代码托管在：[Github](https://github.com/chenzhou06/iiecon)，有兴趣可以看一下，欢迎提出改进意见。
 
 为了避免网站备案等麻烦，选择了国外的服务器提供商，机房在洛杉矶，国内延迟可能较高。
 

@@ -43,6 +43,9 @@
     {% if current_user.is_authenticated() %}
     <div class="container col-md-3 col-md-offset-1">
         <a class="btn btn-danger" href="{{ url_for('.newpost') }}">发布文章</a>
+        <br/>
+        <br>
+        <p>为保证浏览体验，网站推荐使用 Firefox 或 Chrome 浏览器，或者将其他浏览器更新到最新版本，以避免兼容性问题。</p>
     </div>
     {% endif %}
 </div>
