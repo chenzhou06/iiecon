@@ -10,8 +10,11 @@
     <div style="background-color: #97CBFF" class="jumbotron">
         <div class="container">
             <div>
+                {% if current_user.is_authenticated() %}
+                <p>Hi, {{ current_user.username }} !</p>
+                {% endif %}
                 <h1>欢迎来到 IIECON</h1>
-                <p>湘潭大学商学院 308 办公室博客群，一个交流经济学思想，分享生活点滴的地方。</p>
+                <p>湘潭大学商学院 308 研究所博客群，一个交流经济学思想，分享生活点滴的地方。</p>
                 <br>
                 <div>
                     <p>{{ greetingMessage["text"] }}</p>

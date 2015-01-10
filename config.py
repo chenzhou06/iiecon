@@ -27,6 +27,7 @@ class Config:
     IIECON_FOLLOWERS_PER_PAGE = 50
     IIECON_COMMENTS_PER_PAGE = 30
     IIECON_SLOW_DB_QUERY_TIME = 0.5
+    WTF_CSRF_ENABLED = False
 
     @staticmethod
     def init_app(app):
@@ -47,7 +48,6 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL") or \
              "sqlite:///" + os.path.join(basedir, "data-test.sqlite")
     WTF_CSRF_ENABLED = False
-
 
 class ProductionConfig(Config):
     SERVER_NAME = "iiecon.cz"
