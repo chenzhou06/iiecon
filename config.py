@@ -27,7 +27,7 @@ class Config:
     IIECON_FOLLOWERS_PER_PAGE = 50
     IIECON_COMMENTS_PER_PAGE = 30
     IIECON_SLOW_DB_QUERY_TIME = 0.5
-    WTF_CSRF_ENABLED = False
+    WTF_CSRF_ENABLED = True
 
     @staticmethod
     def init_app(app):

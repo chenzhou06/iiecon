@@ -45,14 +45,6 @@ def test(coverage=False):
         print("HTML version: file://%s/index.html" % covdir)
         COV.erase()
 
-@manager.command
-def profile(length=25, profile_dir=None):
-    """Start the application under the code profiler."""
-    from werkzeug.contrib.profiler import ProfileMiddleware
-    app.wsgi_app = ProfileMiddleware(app.wsgi_app, restrictions=[length],
-                                    profile_dir=profile_dir)
-    app.run()
-
 
 @manager.command
 def deploy():
@@ -62,7 +54,6 @@ def deploy():
 
     upgrade()
     Role.insert_roles()
-    User.add_self_follows()
 
 
 if __name__ == "__main__":

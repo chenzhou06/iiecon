@@ -107,3 +107,6 @@ div.flask-pagedown-preview h3 {
     border-bottom: 1px solid #e0e0e0;
 }
 
+html {
+    font-family: sans-serif;
+}
