@@ -14,6 +14,36 @@ ul.posts {
     margin: 16px 0px 0px 0px;
     border-top: 1px solid #e0e0e0;
 }
+
+ul.users {
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+
+ul.users {
+    border-top: none;
+}
+
+ul.users li.user {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+div.user-thumbnail {
+    position: absolute;
+}
+
+div.user-content {
+    margin-left: 48px;
+    min-height: 48px;
+}
+
+div.user-joindate {
+    float: right;
+}
+
 div.post-tabs ul.posts {
     margin: 0px;
     border-top: none;

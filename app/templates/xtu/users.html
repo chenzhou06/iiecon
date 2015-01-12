@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}IIECON - 博主{% endblock %}
+
+{% block page_content %}
+
+<div class="container">
+    <div class="page-header">
+        <h1>全部博主</h1>
+    </div>
+    <div class="container col-md-8">
+
+
+        <small><p>按加入时间倒序排列。</p></small>
+
+        <div>
+        <ul class="users">
+            {% for user in users %}
+            <li class="user">
+                <div class="user-thumbnail">
+                    <a href="{{ url_for('xtu.user', username=user.username) }}">
+                        <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=40) }}">
+                    </a>
+                </div>
+                <div class="user-content">
+                    <div class="user-joindate">
+                        <p>加入于：{{ moment(user.member_since).fromNow() }}</p>
+                    </div>
+
+                    <div class="username">
+                        <a href="{{ url_for('xtu.user', username=user.username) }}">{{ user.username }}</a>
+                    </div>
+                    
+                    {% if user.name %}
+                    <div class="user-name">
+                        {{ user.name }}
+                    </div>
+                    {% endif %}
+                    {% if user.about_me %}
+                    <div class="user-aboutme">
+                        {{ user.about_me }}
+                    </div>
+                    {% endif %}
+
+                    <div class="user-footer">
+                        <a href="{{ url_for('xtu.user', username=user.username) }}#user-articles"><span class="label label-primary">全部文章 {{ user.posts.count() }}</span></a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        </div>
+
+        
+
+    </div>
+    {% if current_user.is_authenticated() %}
+        <div class="container col-md-4">
+            <div>
+                <a class="btn btn-danger" href="{{ url_for('xtu.edit_profile') }}">修改个人资料</a>
+            </div>
+        </div>
+    {% endif %}
+
+    
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_jquery() }}
+{{ moment.include_moment() }}
+{% endblock %}

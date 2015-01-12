@@ -63,6 +63,11 @@ def newpost():
         return redirect(url_for("xtu.index"))
     return render_template("xtu/newpost.html", form=form)
 
+@xtu.route("/users")
+def users():
+    users = User.query.order_by(User.member_since.desc()).all()
+    return render_template("xtu/users.html", users=users)
+
 @xtu.route("/user/<username>")
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()

@@ -1,39 +1,68 @@
-English is my second language, I try my best to avoid mistakes, 
-but if there any, leave a message, I will appreciate it.
+# 关于本站
+这是 308 研究室共同的网站，让我们大家维护好它~
 
-# IIECON.CZ
+本站用 Python 的 Flask 框架写成，花了近两个月时间，主要参考了教材 Flask Web Development -- Developing Web Application with Python，使用 Ubuntu 14.04 + gunicorn + nginx 部署。CSS 使用了 Twitter 的 Bootstrap, 数据库使用 Python 自带的 Sqlite。目前，在 IE10，Firefox 34.05，Chrome 39 上测试通过。网站支持手机浏览，UC 浏览器测试通过。
 
-This site is a web project for my blog and other stuff.
+网站源代码托管在：[Github](https://github.com/chenzhou06/iiecon)，有兴趣可以看一下，欢迎提出改进意见。
 
-The domain means "I love economics". The second "I" stands
-for "love", which sounds like "爱"(love) in Chinese.
+为了避免网站备案等麻烦，选择了国外的服务器提供商，机房在洛杉矶，国内延迟可能较高。
 
-I built it with the python web framework Flask, served by Gunicorn, 
-reverse proxied by nginx.
+# 怎样使用本站
+点击主页的 “发布文章” 文章按钮，进入文章编辑界面，编辑框可以拉大。文本编辑支持 Markdown 语法，Markdown 教程可以参考[这里](http://www.ituring.com.cn/article/775)。显示效果可以在编辑框下方预览。
 
-For the time being I host my site at SugarHosts. If nothing bad happened, 
-I will host the site there for the following days.
+Markdown 基本的语法规则：
 
-## xtu.308.iiecon.cz
+## 分段：空一行表示分段，空多行与空一行的效果没有区别。
 
-Under this subdomain, I host my pages for the office 308 in business 
-school, xtu.
+<code>
+    这是一段。</code>
 
-Temporally, users can sign in, post blogs or comments.
+<code></code>
 
-I recommend users putting articles about Economics or their serious
-thoughts on this site, but other funny stories are also welcome.
+<code>
+    这是另一段。
+</code>
 
-I truly want to make a site which is joyful, even useful,
-and inspiring.
+## 多级标题：不同数量的 # 号表示不同级别的标题，不同级别的标题文字大小不同。
 
-## panel.iiecon.cz
+<code># 这是一级标题</code>
 
-This part of the site is for presenting statistic numbers which some 
-people may concern.
+<code>## 这是二级标题</code>
 
-I divided this part into Global, China and so on. In each different
-section, the web page will display some tables and charts that matters
-for our researches.
+<code>### 这是三级标题</code>
 
-The part will be under development for a long time.
+## 文字 *倾斜*，文字**加粗**
+
+一对星号夹着的文字会倾斜，两对星号夹着的文字会加粗。
+
+<code>文字 \*倾斜\*，文字 \*\*加粗\*\*</code>
+
+## 项目符号：用 * 表示一个项目.
+
+<code>* 第一个项目</code>
+
+<code>* 第二个项目</code>
+
+<code>* 第三个项目</code>
+
+显示效果为：
+
+* 第一个项目
+* 第二个项目
+* 第三个项目
+
+
+# 为什么建立本站
+本站是为了提供给大家一个交流展示的平台，分享各自最新的学术思想，展示自己的学习感悟，当然也是一个给大家写写生活感悟，发发牢骚的地方。
+
+这个网站也是我自己的未来职业规划的一部分，在我当老师以后，希望能有一个和学生交流的平台，QQ 等平台不够严肃，交流的信息也碎片化，不足以承担这个功能，自己建设一个网站是最能满足这个需求。建设这个网站的经验能很好地为未来建设课程主页打好基础。
+
+同时，作为一个想要成为经济学者的研究生，数据处理是必备的技能。当近学术界进行数据分析、数据挖掘，主流是使用 R , R 本身不是很难，如果只是进行普通的数据分析，建立计量模型，R 里有大量的 Library 能够直接使用，但如果要看懂顶级期刊的 R 程序，不懂基本的算法，不懂 R 的底层实现是不可能的。R 本身是用 C 写的，学会怎么用 R 很简单，但是要明白为什么这么用，必须懂一点 C。对于非科班的人来说，没有教师的指引，没有一点编程的概念，C 非常难学。相较之下，Python 是一门很好的入门语言，为了对于编程有个大致的了解，我将建设一个网站作为学习项目，这个网站就是成果。
+
+同时，通过建设网站，学习操作服务器，也能为未来通过云计算分析数据打下基础。
+
+我个人认为，未来经济学的发展越来越需要与计算机科学相结合。要能更好地获得数据，更好地分析数据，少不了要与数据科学家合作。如果自身不懂代码的话，很难与优秀的数据科学家合作，也很难验证他人数据挖掘结果的可靠性。
+
+总之，为了学好 R， 必须学 C，为了学 C，先学 Python，为了初步掌握 Python，我建了这个网站。
+
+希望大家能愉快地使用这个网站。

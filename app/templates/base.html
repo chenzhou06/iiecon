@@ -22,7 +22,10 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">     
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <u class="nav navbar-nav">
+        <li><a href="{{ url_for('xtu.users')}}">全部博主</a></li>
+      </u>
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated() %}
         <li><a href="{{ url_for('xtu.newpost') }}">发布文章</a></li>
@@ -69,7 +72,7 @@
 
     <footer>
       <div class="container">
-        <p class="text-center"> Copyright &copy; XTU 308 </p>
+        <small><p class="text-center"> Copyright &copy; XTU 308 </p></small>
       </div>
     </footer>
 
