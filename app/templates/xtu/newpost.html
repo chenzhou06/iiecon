@@ -5,18 +5,36 @@
 
 {% block page_content %}
 <div class="container">
-<div class="container col-md-8">
+
 
 <div class="page-header">
     <h1>发布文章</h1>
 </div>
 
+<div class="container col-md-8">
 <div>
     {% if current_user.can(Permission.WRITE_ARTICLES) %}
     {{ wtf.quick_form(form) }}
     {% endif %}
 </div>
 
+</div>
+
+<div class="container col-md-4">
+    <div class="container col-md-12">
+        <h4>编辑器使用说明</h4>
+        <p>编辑器可以拉大，并支持 Markdown 语法：</p>
+        <p>井号代表标题</p>
+        <pre><code># 一级标题
+## 二级标题，依此类推，最多 6 级标题。</code></pre>
+        <p>一对星号表示<i>倾斜</i>，两对星号表示<strong>强调</strong>：</p>
+        <pre>*倾斜* **加粗**
+        </pre>
+        <p>注意空一行表示分段，<strong>段首空格</strong>表示代码区域：</p>
+        <pre><code>这是一个代码区域。(边框 + 红色背景)
+        </code></pre>
+        <p>更详细的 Markdown 教程见<a href="http://www.ituring.com.cn/article/775">这里</a>。</p>
+    </div>
 </div>
 </div>
 <br>
