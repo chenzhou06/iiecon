@@ -140,3 +140,7 @@ div.flask-pagedown-preview h3 {
 html {
     font-family: sans-serif;
 }
+
+div.bdsharebuttonbox {
+    float: left;
+}
