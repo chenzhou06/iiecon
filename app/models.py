@@ -53,6 +53,7 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.name
 
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -80,6 +81,7 @@ class User(UserMixin, db.Model):
         if self.email is not None and self.avatar_hash is None:
             self.avatar_hash = hashlib.md5(
                 self.email.encode("utf-8")).hexdigest()
+
     @property
     def password(self):
         raise AttributeError("password is not a readable attribute")
@@ -91,13 +93,9 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    
-
     def generate_confirmation_token(self, expiration=3600):
         s = Serializer(current_app.config["SECRET_KEY"], expiration)
         return s.dumps({"confirm": self.id})
-
-    
 
     def confirm(self, token):
         s = Serializer(current_app.config["SECRET_KEY"])
@@ -129,7 +127,7 @@ class User(UserMixin, db.Model):
 
     def generate_email_change_token(self, new_email, expiration=3600):
         s = Serializer(current_app.config["SECRET_KEY"], expiration)
-        return s.dumps({"change_email": self.id, "new_email":new_email})
+        return s.dumps({"change_email": self.id, "new_email": new_email})
 
     def change_email(self, token):
         s = Serializer(current_app.config["SECRET_KEY"])
@@ -166,10 +164,11 @@ class User(UserMixin, db.Model):
             url = "https://secure.gravatar.com/avatar"
         else:
             url = "http://gravatar.duoshuo.com/avatar"
-        hash = self.avatar_hash or hashlib.md5(self.email.encode("utf-8")).hexdigest()
+        hash = self.avatar_hash or hashlib.md5(
+            self.email.encode("utf-8")).hexdigest()
         return "{url}/{hash}?s={size}&d={default}&r={rating}".format(
             url=url, hash=hash, size=size, default=default, rating=rating)
-    
+
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -196,8 +195,8 @@ class User(UserMixin, db.Model):
                 db.session.rollback()
 
 
-
 class AnonymousUser(AnonymousUserMixin):
+
     def can(self, permissions):
         return False
 
@@ -205,6 +204,7 @@ class AnonymousUser(AnonymousUserMixin):
         return False
 
 login_manager.anonymous_user = AnonymousUser
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -221,7 +221,6 @@ class Post(db.Model):
     body_html = db.Column(db.Text)
     comments = db.relationship("Comment", backref="post", lazy="dynamic")
 
-
     @staticmethod
     def generate_fake(count=100):
         from random import seed, randint
@@ -231,7 +230,7 @@ class Post(db.Model):
         user_count = User.query.count()
         for i in range(count):
             u = User.query.offset(randint(0, user_count - 1)).first()
-            p = Post(body=forgery_py.lorem_ipsum.sentences(randint(1,3)),
+            p = Post(body=forgery_py.lorem_ipsum.sentences(randint(1, 3)),
                      timestamp=forgery_py.date.date(True),
                      author=u)
             db.session.add(p)
@@ -247,6 +246,7 @@ class Post(db.Model):
             tags=allowed_tags, strip=True))
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
+
 
 class Comment(db.Model):
     __tablename__ = "comments"
