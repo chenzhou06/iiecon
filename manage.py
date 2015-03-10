@@ -1,11 +1,6 @@
 #!/user/bin/env python
 
 import os
-COV = None
-if os.environ.get("IIECON_COVERAGE"):
-    import coverage
-    COV = coverage.coverage(branch=True, include="app/*")
-    COV.start()
 
 
 from app import create_app, db
@@ -16,6 +11,11 @@ from flask.ext.script import Manager, Shell
 
 from flask.ext.migrate import Migrate, MigrateCommand
 
+COV = None
+if os.environ.get("IIECON_COVERAGE"):
+    import coverage
+    COV = coverage.coverage(branch=True, include="app/*")
+    COV.start()
 
 app = create_app(os.getenv("IIECON_CONFIG") or "default")
 manager = Manager(app)
