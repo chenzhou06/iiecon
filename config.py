@@ -32,6 +32,7 @@ class Config:
     FLATPAGES_AUTO_RELOAD = True
     FLATPAGES_EXTENSION = '.md'
     FLATPAGES_ENCODING = 'utf-8'
+    FLATPAGES_MIMA = "cz650520"
 
     @staticmethod
     def init_app(app):

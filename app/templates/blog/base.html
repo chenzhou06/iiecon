@@ -2,6 +2,12 @@
 
 {% block title %}CZ's Blog{% endblock %}
 
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='blog/favicon.ico') }}">
+{% endblock head %}
+
+
 {% block content %}
     <h1>my blog</h1>
     {% block page_content %}{% endblock %}

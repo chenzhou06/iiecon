@@ -1,14 +1,19 @@
+
 from flask import render_template
 from . import blog
 from .. import flatpages
+
 
 articles = flatpages
 
 
 @blog.route("/")
 def index():
-
-    return render_template("blog/index.html", articles=articles)
+    published = (p for p in articles if 'published' in p.meta)
+    latest = sorted(published, reverse=True,
+                    key=lambda p: p.meta['published'])
+    return render_template("blog/index.html",
+                           articles=latest[:10])
 
 
 @blog.route('/<path:path>/')
