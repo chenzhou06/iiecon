@@ -7,14 +7,20 @@ if os.environ.get("IIECON_COVERAGE"):
     COV = coverage.coverage(branch=True, include="app/*")
     COV.start()
 
+
 from app import create_app, db
+
 from app.models import User, Role, Permission, Post
+
 from flask.ext.script import Manager, Shell
+
 from flask.ext.migrate import Migrate, MigrateCommand
+
 
 app = create_app(os.getenv("IIECON_CONFIG") or "default")
 manager = Manager(app)
 migrate = Migrate(app, db)
+
 
 def make_shell_context():
     return dict(app=app, db=db, User=User, Role=Role,
@@ -30,7 +36,7 @@ def test(coverage=False):
     if coverage and not os.environ.get("IIECON_COVERAGE"):
         import sys
         os.envrion["FLASK_COVERAGE"] = "1"
-        os.execvp(sys.executable, [sys.executable]+sys.argv)
+        os.execvp(sys.executable, [sys.executable] + sys.argv)
     import unittest
     tests = unittest.TestLoader().discover("tests")
     unittest.TextTextRunner(verbosity=2).run(tests)

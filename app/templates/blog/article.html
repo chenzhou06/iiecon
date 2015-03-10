@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ article.title }} - Chen Zhou{% endblock title %}
+
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript"
+      src="https://cdnjs.net/ajax/libs/mathjax/2.5.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.4/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock head %}
+
+{% block page_content %}
+    <h2>{{ article.title }}</h2>
+    {{ article.html | safe }}
+{% endblock page_content %}

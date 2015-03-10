@@ -5,6 +5,7 @@ from flask.ext.moment import Moment
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.pagedown import PageDown
+from flask.ext.flatpages import FlatPages
 from config import config
 
 bootstrap = Bootstrap()
@@ -12,7 +13,7 @@ mail = Mail()
 moment = Moment()
 db = SQLAlchemy()
 pagedown = PageDown()
-
+flatpages = FlatPages()
 
 login_manager = LoginManager()
 login_manager.session_protection = "strong"
@@ -30,6 +31,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     pagedown.init_app(app)
+    flatpages.init_app(app)
 
     from .xtu import xtu as xtu_blueprint
     if config_name == "default":
@@ -39,9 +41,15 @@ def create_app(config_name):
 
     from .index import index as index_blueprint
     app.register_blueprint(index_blueprint)
-    
+
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix="/auth")
+
+    from .blog import blog as blog_blueprint
+    if config_name == "default":
+        app.register_blueprint(blog_blueprint, url_prefix="/blog")
+    else:
+        app.register_blueprint(blog_blueprint, subdomain="blog")
 
     # from .auth import auth as auth_blueprint
     # app.register_blueprint(auth_blueprint, url_prefix="/auth")

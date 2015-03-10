@@ -28,6 +28,10 @@ class Config:
     IIECON_COMMENTS_PER_PAGE = 30
     IIECON_SLOW_DB_QUERY_TIME = 0.5
     WTF_CSRF_ENABLED = True
+    FLATPAGES_ROOT = os.path.join(basedir, "app", "blog", "pages")
+    FLATPAGES_AUTO_RELOAD = True
+    FLATPAGES_EXTENSION = '.md'
+    FLATPAGES_ENCODING = 'utf-8'
 
     @staticmethod
     def init_app(app):
@@ -39,20 +43,21 @@ class DevelopmentConfig(Config):
     SERVER_NAME = "127.0.0.1:5000"
     # WTF_CSRF_ENABLED = False
     SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or \
-            "sqlite:///" + os.path.join(basedir, "data-dev.sqlite")
+        "sqlite:///" + os.path.join(basedir, "data-dev.sqlite")
 
 
 class TestingConfig(Config):
     TESTING = True
     SERVER_NAME = "iiecon.cz"
     SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL") or \
-             "sqlite:///" + os.path.join(basedir, "data-test.sqlite")
+        "sqlite:///" + os.path.join(basedir, "data-test.sqlite")
     WTF_CSRF_ENABLED = False
+
 
 class ProductionConfig(Config):
     SERVER_NAME = "iiecon.cz"
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") or \
-             "sqlite:///" + os.path.join(basedir, "data.sqlite")
+        "sqlite:///" + os.path.join(basedir, "data.sqlite")
 
 
 config = {
